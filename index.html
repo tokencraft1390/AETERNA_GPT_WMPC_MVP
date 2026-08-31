@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="AETERNA GPT — a WebMCP-native guarded agent demo for autonomous audit work inside an explicit trust envelope." />
+  <title>AETERNA GPT — WebMCP Guarded Agent</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">AETERNA GPT · WEBMCP MVP</p>
+        <h1>Trusted agents should do trusted work.</h1>
+        <p class="lede">A browser-native audit agent that inspects, finds security issues, proposes fixes, validates them, and pauses only when a real approval boundary is crossed.</p>
+      </div>
+      <div class="status" id="mcpStatus">Detecting WebMCP…</div>
+    </header>
+
+    <section class="grid">
+      <article class="panel">
+        <h2>Trust Envelope</h2>
+        <div class="tier"><span>AUTONOMOUS</span><p>Inspect · analyze · classify · propose · validate · evidence</p></div>
+        <div class="tier"><span>SCOPED</span><p>Pre-authorized sandbox/test actions only</p></div>
+        <div class="tier danger"><span>APPROVAL</span><p>Production deploy · signing · payment · destructive writes · protected branches</p></div>
+      </article>
+
+      <article class="panel">
+        <h2>Demo Project</h2>
+        <label for="projectName">Project name</label>
+        <input id="projectName" value="demo-vulnerable-app" />
+        <label for="sourceText">Untrusted project content</label>
+        <textarea id="sourceText" rows="9">const API_KEY = "sk-demo-hardcoded-secret";
+function render(userInput) {
+  document.querySelector('#output').innerHTML = userInput;
+}
+fetch('/api/admin?token=' + API_KEY);</textarea>
+        <button id="runDemo">Run guarded audit</button>
+      </article>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="log-head">
+        <h2>Agent Evidence Stream</h2>
+        <button class="ghost" id="clearLog">Clear</button>
+      </div>
+      <div id="log" class="log" aria-live="polite"></div>
+    </section>
+
+    <section class="panel approval-panel" id="approvalPanel" hidden>
+      <p class="eyebrow">HUMAN BOUNDARY</p>
+      <h2>Approval required</h2>
+      <p id="approvalReason"></p>
+      <div class="actions">
+        <button id="approveBtn">Approve once</button>
+        <button id="rejectBtn" class="ghost">Reject</button>
+      </div>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
