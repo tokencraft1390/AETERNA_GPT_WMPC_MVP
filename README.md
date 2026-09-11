@@ -16,8 +16,10 @@ The product principle is simple: **trusted agents should do trusted work**. Read
 
 The page registers these tools with `document.modelContext.registerTool(...)`:
 
+- `get_audit_engagement` — loads the pinned Europeum scope, reward, deadline, and reporting constraints.
+- `preflight_audit` — verifies repository, commit, file scope, and submission eligibility before analysis.
 - `inspect_project` — read-only inspection of project text treated as untrusted content.
-- `scan_security` — deterministic evidence-backed security scan.
+- `scan_security` — deterministic evidence-backed scan that fails closed on out-of-scope engagement files.
 - `propose_patch` — generates a non-persistent patch proposal in memory.
 - `validate_patch` — rescans the proposed patch without external mutation.
 - `request_human_approval` — records an approval request for a consequential action but does not execute it.
@@ -39,6 +41,20 @@ Pre-authorized sandbox/test actions may be added later, but this V1 does not per
 Production deployment, signing, payments, destructive writes, protected-branch changes, secret rotation, and external commitments are outside the autonomous MVP boundary.
 
 If input is missing, ambiguous, or rejected by policy, the demo fails closed and preserves state.
+
+## Europeum audit profile
+
+The versioned profile at `audit/europeum-engagement.json` configures AETERNA for the Europeum Core Services API DualDefense Audit:
+
+- source repository `https://gitlab.com/europeum/public/core-services`;
+- pinned commit `60a26443bde7f9487239aaa73d52f555fd871c30`;
+- only eligible `api/**` source paths, with tests, build output, configuration, documentation, and all non-API packages excluded;
+- up to $5,000 USD equivalent in USDC, with a September 17, 2026 deadline whose timezone is not stated;
+- a 50-point HackenProof reputation minimum, KYC, and acceptance of the $2 submission fee;
+- only critical impact causing fund loss or permanent fund locking;
+- a runnable proof of concept, concise reproduction steps, and a proposed fix.
+
+The profile does not grant permission to test live systems. AETERNA handles source supplied locally and labels heuristic matches as unproven candidates. It does not submit reports, contact the target, disclose findings, or claim reward eligibility.
 
 ## Judge demo
 
@@ -65,11 +81,15 @@ The challenge-period additions in this repository are:
 
 ## Current limitations
 
-This is intentionally a small, deterministic MVP. It does not execute shell commands, inspect arbitrary private repositories, deploy production code, sign transactions, spend funds, extract real secrets, or persistently modify external systems. The security scan demonstrates the agent workflow using a bounded set of heuristics rather than claiming full static-analysis coverage.
+This is intentionally a small, deterministic MVP. It does not execute shell commands, fetch or inspect arbitrary private repositories, deploy production code, sign transactions, spend funds, extract real secrets, test live systems, submit bounty reports, or persistently modify external systems. The security scan demonstrates the agent workflow using a bounded set of heuristics rather than claiming full static-analysis coverage.
 
 ## Run locally
 
 This is a static application. Serve the repository root with any static HTTP server and open it in a WebMCP-capable browser. No API key or backend is required for the V1 demo.
+
+Run the policy checks with:
+
+`node --test tests/audit-policy.test.mjs`
 
 ## License
 
