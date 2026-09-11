@@ -18,6 +18,27 @@
       <div class="status" id="mcpStatus">Detecting WebMCP…</div>
     </header>
 
+    <section class="panel engagement-panel">
+      <div>
+        <p class="eyebrow">ACTIVE ENGAGEMENT · FAIL-CLOSED</p>
+        <h2>Europeum Core Services API DualDefense Audit</h2>
+        <p class="engagement-copy">Pinned, local analysis of <code>api/**</code>. A scanner result is only a candidate until a runnable proof demonstrates critical fund loss or permanent fund locking.</p>
+      </div>
+      <dl class="engagement-facts">
+        <div><dt>Reward</dt><dd>Up to $5,000 in USDC</dd></div>
+        <div><dt>Deadline</dt><dd>September 17, 2026 · timezone unstated</dd></div>
+        <div><dt>Commit</dt><dd><code>60a26443…871c30</code></dd></div>
+        <div><dt>Gate</dt><dd>50 reputation · KYC · $2 fee</dd></div>
+      </dl>
+      <div class="preflight-fields">
+        <label for="researcherReputation">HackenProof reputation</label>
+        <input id="researcherReputation" type="number" min="0" value="0" />
+        <label class="check"><input id="kycReady" type="checkbox" /> KYC ready</label>
+        <label class="check"><input id="feeAccepted" type="checkbox" /> $2 submission fee accepted</label>
+      </div>
+      <button id="runPreflight">Run engagement preflight</button>
+    </section>
+
     <section class="grid">
       <article class="panel">
         <h2>Trust Envelope</h2>
@@ -30,6 +51,8 @@
         <h2>Demo Project</h2>
         <label for="projectName">Project name</label>
         <input id="projectName" value="demo-vulnerable-app" />
+        <label for="filePath">Repository-relative file path</label>
+        <input id="filePath" value="demo.js" />
         <label for="sourceText">Untrusted project content</label>
         <textarea id="sourceText" rows="9">const API_KEY = "sk-demo-hardcoded-secret";
 function render(userInput) {
