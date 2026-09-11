@@ -1,0 +1,18 @@
+{
+  "id": "europeum-core-services-api-2026-09",
+  "title": "Europeum Core Services API DualDefense Audit",
+  "organization": "Europeum",
+  "platform": "HackenProof",
+  "source": "https://hackenproof.com/audit-programs/europeum-api-dualdefense-audit",
+  "repository": "https://gitlab.com/europeum/public/core-services",
+  "commit": "60a26443bde7f9487239aaa73d52f555fd871c30",
+  "includedPaths": ["api/**"],
+  "excludedPaths": ["libs/**", "cli/**", "subgraphs/**", "contracts/**", "scripts/**", "api/test/**", "api/tests/**", "api/e2e/**", "api/**/*.spec.ts", "api/**/*.snap", "api/dist/**", "api/coverage/**", "api/build/**", "api/hardhat.config.ts", "api/vitest.config.ts", "api/vitest.config.e2e.ts", "api/nest-cli.json", "api/tsconfig*.json", "api/lint-staged.config.cjs", "api/Dockerfile", "api/.env*", "api/**/*.md", "api/**/*.txt"],
+  "reward": {"maximum": 5000, "currency": "USD equivalent in USDC", "allocation": "Shared among unique accepted critical vulnerabilities; duplicates split that vulnerability's allocation"},
+  "deadline": "2026-09-17",
+  "deadlineTimezone": null,
+  "eligibility": {"kycRequired": true, "minimumHackenProofReputation": 50, "submissionFeeUsd": 2, "employeesAndContractorsExcluded": true},
+  "qualifyingImpact": "Critical vulnerabilities causing loss or permanent locking of funds",
+  "reportRequirements": ["Runnable proof of concept", "Concise reproduction instructions", "Proposed fix"],
+  "rules": ["Analyze only the pinned commit and included paths", "Use local, non-destructive analysis; never test live systems", "Treat scanner output as a candidate until a runnable local proof establishes critical impact", "Contact and submit only through HackenProof", "Do not publicly disclose findings"]
+}
